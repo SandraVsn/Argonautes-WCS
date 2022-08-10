@@ -7,7 +7,7 @@ app.use(express.json());
 
 mongoose
   .connect(
-    "mongodb+srv://sandra:6gHsa7O61i3rqL6R@cluster0.qpipuqb.mongodb.net/?retryWrites=true&w=majority",
+    "mongodb+srv://sandra:{PASSWORD}@cluster0.qpipuqb.mongodb.net/?retryWrites=true&w=majority",
     { useNewUrlParser: true, useUnifiedTopology: true }
   )
   .then(() => console.log("Connexion à MongoDB réussie !"))
