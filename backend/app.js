@@ -30,6 +30,7 @@ app.post("/api/argonaute", (req, res, next) => {
   const argonaute = new Argonaute({
     ...req.body,
   });
+  console.log(req.body);
   argonaute
     .save()
     .then(() => res.status(201).json({ message: "Argonaute enregistré !" }))

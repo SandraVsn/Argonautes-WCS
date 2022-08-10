@@ -15,9 +15,19 @@ let newArgonaute = document
 
     fetch("http://localhost:3000/api/argonaute", {
       method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify(newArgonauteName),
-    });
-    window.location.reload();
+    })
+      .then((res) => {
+        console.log(res);
+        window.location.reload();
+      })
+      .catch((error) => {
+        console.log("erreur : " + err);
+      });
   });
 
 // LISTER LES ARGONAUTES DE LA BASE DE DONNEE
@@ -32,7 +42,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
     .then((datas) => {
       let affichage = `<section class="member-list">`;
       for (let data of datas) {
-        affichage += ` <div class="member-item">${data._id}</div>`;
+        affichage += ` <div class="member-item">${data.name}</div>`;
       }
       affichage += "</section>";
       document.querySelector("#argonautes").innerHTML = affichage;

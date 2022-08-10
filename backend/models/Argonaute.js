@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const argonauteSchema = mongoose.Schema({
-  name: { type: String },
+  name: { type: String, required: true },
 });
 
 module.exports = mongoose.model("Argonaute", argonauteSchema);
