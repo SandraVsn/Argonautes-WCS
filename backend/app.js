@@ -28,7 +28,7 @@ app.use((req, res, next) => {
 
 app.post("/api/argonaute", (req, res, next) => {
   const argonaute = new Argonaute({
-    name: req.body.name,
+    ...req.body,
   });
   argonaute
     .save()

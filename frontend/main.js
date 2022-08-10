@@ -15,7 +15,7 @@ let newArgonaute = document
 
     fetch("http://localhost:3000/api/argonaute", {
       method: "POST",
-      body: { name: "Sandra" },
+      body: JSON.stringify(newArgonauteName),
     });
     window.location.reload();
   });
