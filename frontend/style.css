@@ -43,6 +43,10 @@ label {
   text-align: center;
 }
 
+.member-list {
+    column-count: 3;
+}
+
 .member-item {
   padding: 0.25em 0;
 }

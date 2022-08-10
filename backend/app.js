@@ -3,6 +3,8 @@ const app = express();
 const mongoose = require("mongoose");
 const Argonaute = require("./models/Argonaute");
 
+app.use(express.json());
+
 mongoose
   .connect(
     "mongodb+srv://sandra:6gHsa7O61i3rqL6R@cluster0.qpipuqb.mongodb.net/?retryWrites=true&w=majority",
@@ -24,13 +26,11 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(express.json());
-
 app.post("/api/argonaute", (req, res, next) => {
   const argonaute = new Argonaute({
-    ...req.body,
+    name: req.body.name,
   });
-  thing
+  argonaute
     .save()
     .then(() => res.status(201).json({ message: "Argonaute enregistré !" }))
     .catch((error) => res.status(400).json({ error }));

@@ -1,3 +1,5 @@
+// AJOUTER UN NOUVEL ARGONAUTE A LA BASE DE DONNEE
+
 let newArgonaute = document
   .querySelector("#new-member")
   .addEventListener("click", (e) => {
@@ -5,13 +7,37 @@ let newArgonaute = document
     e.preventDefault();
 
     // récupérer le nom indiqué dans l'input text du formulaire
-    let newArgonauteName = document.querySelector("#name").value;
+    let newArgonauteName = {
+      name: document.querySelector("#name").value,
+    };
 
-    // Envoyer les données avec une requête POST
+    // Envoyer le nom avec une requête POST
 
     fetch("http://localhost:3000/api/argonaute", {
       method: "POST",
-      headers: {},
-      body: JSON.stringify({ name: newArgonauteName }),
+      body: { name: "Sandra" },
     });
+    window.location.reload();
   });
+
+// LISTER LES ARGONAUTES DE LA BASE DE DONNEE
+
+document.addEventListener("DOMContentLoaded", (e) => {
+  fetch("http://localhost:3000/api/argonaute")
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      }
+    })
+    .then((datas) => {
+      let affichage = `<section class="member-list">`;
+      for (let data of datas) {
+        affichage += ` <div class="member-item">${data._id}</div>`;
+      }
+      affichage += "</section>";
+      document.querySelector("#argonautes").innerHTML = affichage;
+    })
+    .catch((err) => {
+      console.log("erreur : " + err);
+    });
+});
